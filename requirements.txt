@@ -1,0 +1,18 @@
+# Core Data Handling
+pandas==2.2.3
+openpyxl==3.1.5
+
+# Date Validation
+python-dateutil==2.9.0.post0
+
+# Advanced Regex
+regex==2024.11.6
+
+# Number ↔ Words Conversion
+num2words==0.5.13
+
+# Logging
+loguru==0.7.2
+
+# Environment Variables (optional but recommended)
+python-dotenv==1.0.1
