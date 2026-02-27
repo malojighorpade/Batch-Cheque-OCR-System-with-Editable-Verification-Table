@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Core Data Handling
 pandas==2.2.3
 openpyxl==3.1.5
@@ -16,3 +17,7 @@ loguru==0.7.2
 
 # Environment Variables (optional but recommended)
 python-dotenv==1.0.1
+=======
+google-genai>=0.3.0
+python-dotenv>=1.0.0
+>>>>>>> feature/gemini-response-handler
