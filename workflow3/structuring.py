@@ -10,7 +10,7 @@ def structure_single_cheque(scoring_result: dict):
     validated_data = scoring_result.get("validated_data", {})
 
     row = {
-        "cheque_id": scoring_result.get("cheque_id"),
+        
         "cheque_number": validated_data.get("cheque_number"),
         "date": validated_data.get("date"),
         "payee_name": validated_data.get("payee_name"),

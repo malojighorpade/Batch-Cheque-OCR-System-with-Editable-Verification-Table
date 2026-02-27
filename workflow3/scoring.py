@@ -3,7 +3,7 @@
 # --------------------------------------------
 
 ERROR_DEDUCTION = {
-    "missing_cheque_id": 20,
+   
     "invalid_cheque_number": 15,
     "invalid_date_format": 15,
     "invalid_calendar_date": 15,
@@ -36,7 +36,7 @@ def classify_confidence(score: int):
 
 def calculate_confidence(validation_result: dict):
 
-    cheque_id = validation_result.get("cheque_id")
+   
     error_flags = validation_result.get("error_flags", [])
     warning_flags = validation_result.get("warning_flags", [])
 
@@ -59,7 +59,7 @@ def calculate_confidence(validation_result: dict):
 
     # Final structured scoring output
     scoring_output = {
-        "cheque_id": cheque_id,
+        
         "validated_data": validation_result.get("validated_data"),
         "error_flags": error_flags,
         "warning_flags": warning_flags,

@@ -1,6 +1,5 @@
 from validation import validate_cheque_data
 
-
 # ---------------------------------------------------
 # Universal Processing Function (Validation Only)
 # ---------------------------------------------------
@@ -22,7 +21,7 @@ def process_cheques(input_data):
         warning_flags = validation_result.get("warning_flags", [])
 
         frontend_list.append({
-            "cheque_id": validated_data.get("cheque_id"),
+            
             "cheque_number": validated_data.get("cheque_number"),
             "date": validated_data.get("date"),
             "payee_name": validated_data.get("payee_name"),
@@ -44,29 +43,23 @@ def process_cheques(input_data):
 # ---------------------------------------------------
 
 if __name__ == "__main__":
+    import os
+    import json
 
-    sample_inputs = [
-        {
-            "cheque_id": "CHQ-TEST1234",
-            "cheque_number": "123456",
-            "date": "25/02/2026",
-            "payee_name": "Rahul Sharma",
-            "amount_number": "5000",
-            "amount_words": "Five Thousand Only",
-            "bank_name": "SBI"
-        },
-        {
-            "cheque_id": "CHQ-TEST5678",
-            "cheque_number": "99999",
-            "date": "05/03/2026",
-            "payee_name": "Amit Kumar",
-            "amount_number": "abc",
-            "amount_words": "Three Thousand Only",
-            "bank_name": "HDFC"
-        }
-    ]
+    BATCH_PATH = "output.json"
 
-    result = process_cheques(sample_inputs)
+    if not os.path.exists(BATCH_PATH):
+        raise FileNotFoundError("Extracted batch file not found.")
+
+    with open(BATCH_PATH, "r", encoding="utf-8") as f:
+        extracted_data = json.load(f)
+
+    for cheque in extracted_data:
+        result = process_cheques(cheque)
+        
+
+
+  
 
     import json
     print(json.dumps(result, indent=4))

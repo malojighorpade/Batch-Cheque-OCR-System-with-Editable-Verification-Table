@@ -3,7 +3,7 @@ def format_for_frontend(scoring_result: dict):
     validated_data = scoring_result.get("validated_data", {})
 
     frontend_json = {
-        "cheque_id": scoring_result.get("cheque_id"),
+       
         "cheque_number": validated_data.get("cheque_number"),
         "date": validated_data.get("date"),
         "payee_name": validated_data.get("payee_name"),
