@@ -19,7 +19,7 @@ Extract the following fields strictly in JSON format:
   "date": "",
   "amount_number": "",
   "amount_words": "",
-  "issuer_name": ""
+  "payee_name": ""
 }
 
 Extraction Rules:

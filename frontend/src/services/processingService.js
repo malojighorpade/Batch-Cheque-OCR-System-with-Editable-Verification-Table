@@ -1,65 +1,35 @@
-import { demoChequeRecords } from "../data/demoData";
+export const processFile = async (file, onProgress) => {
+  try {
+    onProgress(30);
 
-const calculateAccuracy = (row) => {
-  const requiredFields = [
-    row.bankName,
-    row.chequeNumber,
-    row.date,
-    row.amount,
-    row.amountword,
-    row.issuerName,
-  ];
+    const response = await fetch("/result.json");
 
-  const filled = requiredFields.filter(
-    (field) => field && field.toString().trim() !== ""
-  ).length;
+    onProgress(70);
 
-  return Math.round((filled / requiredFields.length) * 100);
-};
+    const backendData = await response.json();
 
-const detectIssue = (row, accuracy) => {
-  if (!row.amount || Number(row.amount) <= 0)
-    return "Invalid Amount";
-  if (!row.chequeNumber)
-    return "Missing Cheque Number";
-  if (!row.amountword)
-    return "Missing Amount in Words";
-  if (!row.date)
-    return "Missing Date";
-  if (!row.bankName)
-    return "Missing Bank Name";
-  if (!row.issuerName)
-    return "Missing Issuer Name";
-  if (accuracy < 80)
-    return "Low Accuracy";
+    onProgress(100);
 
-  return "OK";
-};
+    const formattedData = backendData.map((item) => {
+      const hasError = item.error_flags && item.error_flags.length > 0;
 
-export const processFile = (file, onProgress) => {
-  return new Promise((resolve) => {
-    let progress = 0;
+      return {
+        bankName: item.bank_name,
+        chequeNumber: item.cheque_number,
+        date: item.date,
+        amount: item.amount_number,
+        amountword: item.amount_words,
+        issuerName: item.payee_name,
+        errorFlags: item.error_flags,
+        warningFlags: item.warning_flags,
+        accuracy: hasError ? 70 : 100,
+        issue: hasError ? "Has Errors" : "OK",
+      };
+    });
 
-    const interval = setInterval(() => {
-      progress += 20;
-      onProgress(progress);
-
-      if (progress >= 100) {
-        clearInterval(interval);
-
-        const processedData = demoChequeRecords.map((row) => {
-          const accuracy = calculateAccuracy(row);
-          const issue = detectIssue(row, accuracy);
-
-          return {
-            ...row,
-            accuracy,
-            issue,
-          };
-        });
-
-        resolve(processedData);
-      }
-    }, 400);
-  });
+    return formattedData;
+  } catch (error) {
+    console.error("Processing error:", error);
+    return [];
+  }
 };

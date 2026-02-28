@@ -1,0 +1,30 @@
+[
+    {
+        "cheque_number": "630801551452",
+        "date": "08/02/2016",
+        "payee_name": "B. Shiva Kumar",
+        "amount_number": "21400000",
+        "amount_words": "Two crore four Lakh",
+        "bank_name": "ICICI Bank",
+        "error_flags": [
+            "invalid_cheque_number"
+        ],
+        "warning_flags": [
+            "cheque_expired"
+        ]
+    },
+    {
+        "cheque_number": "630801551452",
+        "date": "08/02/2016",
+        "payee_name": "B. Shiva Kumar",
+        "amount_number": "21400000",
+        "amount_words": "Two crore four Lakh",
+        "bank_name": "ICICI Bank",
+        "error_flags": [
+            "invalid_cheque_number"
+        ],
+        "warning_flags": [
+            "cheque_expired"
+        ]
+    }
+]

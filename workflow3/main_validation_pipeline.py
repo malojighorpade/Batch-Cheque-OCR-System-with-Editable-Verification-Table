@@ -54,12 +54,8 @@ if __name__ == "__main__":
     with open(BATCH_PATH, "r", encoding="utf-8") as f:
         extracted_data = json.load(f)
 
-    for cheque in extracted_data:
-        result = process_cheques(cheque)
-        
+    result = process_cheques(extracted_data)
+    with open("./frontend/result.json", "w", encoding="utf-8") as f:
+        json.dump(result["cheques"], f, indent=4)
 
-
-  
-
-    import json
     print(json.dumps(result, indent=4))
